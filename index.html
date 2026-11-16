@@ -146,8 +146,9 @@
   <!-- ===================================================================== -->
   <!-- 2. HERO SECTION WITH LARGE PLACEHOLDER #1                             -->
   <!-- ===================================================================== -->
-  <section id="top" class="bg-hunter-950 text-ivory-50 pt-10 pb-16 sm:pt-14 sm:pb-24 border-b-4 border-gold-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="top" class="relative min-h-[calc(100svh-5rem)] flex items-center bg-hunter-950 text-ivory-50 py-12 sm:py-16 border-b-4 border-gold-500 overflow-hidden" style="background-image:linear-gradient(180deg,rgba(13,31,24,.58),rgba(13,31,24,.76)),url('/razz-hero.jpg');background-size:cover;background-position:center 56%;">
+    <div class="absolute inset-0 bg-gradient-to-b from-hunter-950/15 via-hunter-950/25 to-hunter-950/70 pointer-events-none"></div>
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Top Intro Banner -->
       <div class="text-center max-w-4xl mx-auto mb-10">
         <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-hunter-900 border border-gold-500/40 text-gold-400 text-xs sm:text-sm uppercase tracking-[0.2em] mb-5">
@@ -160,8 +161,8 @@
 
         <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ivory-50 leading-tight">
           <span class="block">Meet Razz</span>
-          <span class="block font-serif italic font-semibold text-gold-400 text-3xl sm:text-4xl mt-1">Lignée du Diamant</span>
-          <span class="block font-serif font-bold text-white text-6xl sm:text-7xl lg:text-8xl tracking-wide leading-tight mt-3">Golden Bloodlines with a Heart of Gold</span>
+          <span class="block font-serif italic font-semibold text-white text-3xl sm:text-4xl mt-1">Lignée du Diamant</span>
+          <span class="block font-serif font-bold text-gold-400 text-6xl sm:text-7xl lg:text-8xl tracking-wide leading-tight mt-3">Golden Bloodlines with a Heart of Gold</span>
         </h1>
 
         <p class="mt-5 text-base sm:text-lg text-ivory-200 max-w-2xl mx-auto leading-relaxed">
@@ -171,24 +172,7 @@
         </p>
       </div>
 
-      <!-- Large Numbered Hero Photo Placeholder (#1) -->
-      <div class="hero-placeholder rounded-2xl w-full min-h-[340px] sm:min-h-[480px] lg:min-h-[580px] flex flex-col items-center justify-center p-8 text-center shadow-2xl relative overflow-hidden">
-        <div class="w-16 h-16 rounded-full bg-hunter-900 border border-gold-400 flex items-center justify-center text-gold-400 mb-4">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <span class="px-4 py-1 rounded-full bg-gold-500 text-hunter-950 font-bold text-xs uppercase tracking-widest mb-3">
-          [PHOTO PLACEHOLDER #1 &mdash; HERO FEATURE IMAGE]
-        </span>
-        <h2 class="font-serif text-2xl sm:text-3xl text-ivory-50 font-semibold max-w-xl">
-          Large Signature Portrait or Jumping Shot of Razz
-        </h2>
-        <p class="mt-2 text-sm text-ivory-300 max-w-md">
-          Recommended: High-resolution landscape photo (1920 &times; 1080 px) showcasing Razz’s chestnut coat, conformation, or poised expression.
-        </p>
-      </div>
-    </div>
+   </div>
   </section>
 
   <!-- ===================================================================== -->
@@ -312,7 +296,7 @@
         <!-- The Sire Card -->
         <div class="bg-white rounded-3xl p-7 sm:p-10 shadow-sm border border-ivory-300 space-y-5 text-hunter-950 leading-relaxed">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-ivory-200 pb-4 gap-2">
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-900"><strong>The Sire:</strong> Diamant’s Legacy </h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-hunter-900"><span class="font-sans text-sm sm:text-base uppercase tracking-[0.18em] font-extrabold text-gold-600 mr-3">The Sire:</span> Diamant’s Legacy </h3>
             <span class="px-3 py-1 rounded-full bg-hunter-950 text-gold-400 text-xs font-bold uppercase tracking-wider shrink-0">Oldenburg Stallion</span>
           </div>
           <p class="text-base sm:text-lg text-hunter-900">
@@ -337,7 +321,7 @@
         <!-- The Grandsire Card -->
         <div class="bg-white rounded-3xl p-7 sm:p-10 shadow-sm border border-ivory-300 space-y-5 text-hunter-950 leading-relaxed">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-ivory-200 pb-4 gap-2">
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-900"><strong>The Grandsire:</strong> Diamant de Semilly</h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-hunter-900"><span class="font-sans text-sm sm:text-base uppercase tracking-[0.18em] font-extrabold text-gold-600 mr-3">The Grandsire:</span> Diamant de Semilly</h3>
             <span class="px-3 py-1 rounded-full bg-hunter-950 text-gold-400 text-xs font-bold uppercase tracking-wider shrink-0">Selle Français Legend</span>
           </div>
           <p class="text-base sm:text-lg text-hunter-900">
@@ -362,7 +346,7 @@
         <!-- The Dam Card -->
         <div class="bg-white rounded-3xl p-7 sm:p-10 shadow-sm border border-ivory-300 space-y-5 text-hunter-950 leading-relaxed">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-ivory-200 pb-4 gap-2">
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-900"><strong>The Dam:</strong> Gingerloma MG </h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-hunter-900"><span class="font-sans text-sm sm:text-base uppercase tracking-[0.18em] font-extrabold text-gold-600 mr-3">The Dam:</span> Gingerloma MG </h3>
             <span class="px-3 py-1 rounded-full bg-hunter-950 text-gold-400 text-xs font-bold uppercase tracking-wider shrink-0">KWPN Mare</span>
           </div>
           <p class="text-base sm:text-lg text-hunter-900">
@@ -389,7 +373,7 @@
           <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400">Genetics &amp; Performance</span>
           <h3 class="font-serif text-2xl sm:text-3xl font-bold text-ivory-50">The Ideal Modern Sport Horse Formula</h3>
           <p class="text-base sm:text-lg text-ivory-200 max-w-3xl mx-auto leading-relaxed">
-            When you combine Diamant’s Legacy and Gingerloma MG, you get the ideal modern sport horse formula: <strong class="text-gold-400">French power and scope <span class="text-white font-normal">(via Diamant de Semilly)</span></strong> balanced with <strong class="text-gold-400">Dutch rideability, movement, and soundness <span class="text-white font-normal">(via Navarone and Goodtimes)</span></strong>.
+            When you combine Diamant’s Legacy and Gingerloma MG, you get the ideal modern sport horse formula: <strong class="text-gold-400">French power and scope</strong> <span class="text-ivory-200 font-normal">(via Diamant de Semilly)</span> balanced with <strong class="text-gold-400">Dutch rideability, movement, and soundness</strong> <span class="text-ivory-200 font-normal">(via Navarone and Goodtimes)</span>.
           </p>
         </div>
       </div>
