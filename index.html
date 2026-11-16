@@ -1166,14 +1166,14 @@
       const galleryGroups = document.querySelectorAll('.gallery-group');
 
       function displayName(path) {
-        return path.split('/').pop().replace(/^\\d+\\s*-\\s*/, '').replace(/\\.[^.]+$/, '').replace(/[_-]+/g, ' ');
+        return path.split('/').pop().replace(/^\d+\s*-\s*/, '').replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
       }
       function mediaCard(item) {
         const path = item.path;
         const encodedPath = path.split('/').map(encodeURIComponent).join('/');
         const url = repoBase + encodedPath;
         const name = displayName(path);
-        const isVideo = /\\.(mp4|webm|mov|m4v)$/i.test(path);
+        const isVideo = /\.(mp4|webm|mov|m4v)$/i.test(path);
         const media = isVideo
           ? '<video controls preload="metadata" playsinline aria-label="' + name.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '"><source src="' + url + '"></video>'
           : '<img loading="lazy" src="' + url + '" alt="' + name.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '">';
@@ -1186,11 +1186,11 @@
           try {
             const response = await fetch(endpoint, {headers:{'Accept':'application/vnd.github+json'}});
             if (!response.ok) throw new Error('GitHub returned ' + response.status);
-            let items = (await response.json()).filter(item => item.type === 'file' && /\\.(jpg|jpeg|png|gif|webp|mp4|webm|mov|m4v)$/i.test(item.name));
+            let items = (await response.json()).filter(item => item.type === 'file' && /\.(jpg|jpeg|png|gif|webp|mp4|webm|mov|m4v)$/i.test(item.name));
             if (category.id === 'baby') {
               items.sort((a,b) => {
-                const na = Number((a.name.match(/^(\\d+)/)||[])[1] || 999999);
-                const nb = Number((b.name.match(/^(\\d+)/)||[])[1] || 999999);
+                const na = Number((a.name.match(/^(\d+)/)||[])[1] || 999999);
+                const nb = Number((b.name.match(/^(\d+)/)||[])[1] || 999999);
                 return na - nb || a.name.localeCompare(b.name, undefined, {numeric:true});
               });
             } else {
