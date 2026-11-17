@@ -176,8 +176,8 @@
         </div>
 
         <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ivory-50 leading-tight">
-          <span class="block">Meet Razz</span>
-          <span class="block font-serif italic font-semibold text-white mt-1" style="font-size:.56em; line-height:1.15;">Lignée du Diamant</span>
+          <span id="hero-meet-razz" class="block">Meet Razz</span>
+          <span id="hero-show-name" class="block font-serif italic font-semibold text-white mt-1" style="font-size:.56em; line-height:1.15; display:inline-block; transform-origin:center;">Lignée du Diamant</span>
           <span class="block font-serif font-bold text-gold-400 text-6xl sm:text-7xl lg:text-8xl tracking-wide leading-tight mt-3">Golden Bloodlines with a Heart of Gold</span>
         </h1>
 
@@ -1164,6 +1164,19 @@
   <!-- ===================================================================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Keep the show-name line exactly as wide as "Meet Razz" at every viewport size.
+      const meetRazzTitle = document.getElementById('hero-meet-razz');
+      const showNameTitle = document.getElementById('hero-show-name');
+      function matchHeroTitleWidths() {
+        if (!meetRazzTitle || !showNameTitle) return;
+        showNameTitle.style.transform = 'scaleX(1)';
+        const targetWidth = meetRazzTitle.getBoundingClientRect().width;
+        const nameWidth = showNameTitle.getBoundingClientRect().width;
+        if (nameWidth > 0) showNameTitle.style.transform = 'scaleX(' + (targetWidth / nameWidth) + ')';
+      }
+      matchHeroTitleWidths();
+      window.addEventListener('resize', matchHeroTitleWidths);
+
       // 1. Mobile Menu Toggle
       const menuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
