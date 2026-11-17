@@ -1223,13 +1223,13 @@
       const galleryGroups = document.querySelectorAll('.gallery-group');
 
       function displayName(path) {
-        return path.split('/').pop().replace(/^\\d+\\s*-\\s*/, '').replace(/\\.[^.]+$/, '').replace(/[_-]+/g, ' ');
+        return path.split('/').pop().replace(/^\d+\s*-\s*/, '').replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
       }
       function mediaCard(path, category) {
         const encodedPath = path.split('/').map(encodeURIComponent).join('/');
         const url = repoBase + encodedPath;
         const name = displayName(path);
-        const isVideo = /\\.(mp4|webm|mov|m4v)$/i.test(path);
+        const isVideo = /\.(mp4|webm|mov|m4v)$/i.test(path);
         const safeName = name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
         const media = isVideo
           ? '<video controls preload="metadata" playsinline aria-label="' + safeName + '"><source src="' + url + '"></video>'
@@ -1243,8 +1243,8 @@
           const items = category.files.slice();
           if (category.id === 'baby') {
             items.sort((a,b) => {
-              const na = Number((a.split('/').pop().match(/^(\\d+)/)||[])[1] || 999999);
-              const nb = Number((b.split('/').pop().match(/^(\\d+)/)||[])[1] || 999999);
+              const na = Number((a.split('/').pop().match(/^(\d+)/)||[])[1] || 999999);
+              const nb = Number((b.split('/').pop().match(/^(\d+)/)||[])[1] || 999999);
               return na - nb || a.localeCompare(b, undefined, {numeric:true});
             });
           } else {
