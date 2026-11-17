@@ -89,11 +89,17 @@
     }
 
     /* Horizontal media carousels */
-    .gallery-carousel { display:flex; gap:1rem; overflow-x:auto; padding:0.25rem 0 1rem; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:#b89228 #ede5d5; }
+    .gallery-carousel-wrap { position:relative; }
+    .gallery-carousel { display:flex; gap:1rem; overflow-x:auto; padding:0.25rem 3.25rem 1rem; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:#b89228 #ede5d5; }
     .gallery-card { flex:0 0 min(82vw, 340px); scroll-snap-align:start; overflow:hidden; border:1px solid #dfd3bc; border-radius:1rem; background:#fff; box-shadow:0 4px 14px rgba(13,31,24,.08); }
-    .gallery-card img,.gallery-card video { display:block; width:100%; height:250px; object-fit:cover; background:#0d1f18; }
+    .gallery-card img,.gallery-card video { display:block; width:100%; height:250px; object-fit:contain; background:#f7f3eb; }
     .gallery-card figcaption { padding:.7rem .9rem; color:#163026; font-size:.78rem; overflow-wrap:anywhere; }
-    .gallery-arrow,.carousel-arrow { display:inline-flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; border-radius:9999px; border:1px solid #b89228; background:#163026; color:#d4af37; font-size:1.6rem; line-height:1; transition:background .2s; }
+    .gallery-card.baby-media { border:0; background:transparent; box-shadow:none; border-radius:0; }
+    .gallery-card.baby-media img,.gallery-card.baby-media video { background:transparent; }
+    .gallery-card.baby-media figcaption { display:none; }
+    .carousel-arrow { position:absolute; z-index:5; top:calc(50% - 1.25rem); display:inline-flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; border-radius:9999px; border:1px solid #b89228; background:#163026; color:#d4af37; font-size:1.6rem; line-height:1; transition:background .2s; box-shadow:0 2px 8px rgba(0,0,0,.2); }
+    .carousel-arrow[data-direction="-1"] { left:0; }
+    .carousel-arrow[data-direction="1"] { right:0; }
     .carousel-arrow:hover { background:#2a5644; }
     .gallery-loading,.gallery-empty { color:#6b746e; font-size:.9rem; padding:1rem; }
 
@@ -156,7 +162,7 @@
   <!-- ===================================================================== -->
   <!-- 2. HERO SECTION WITH LARGE PLACEHOLDER #1                             -->
   <!-- ===================================================================== -->
-  <section id="top" class="relative min-h-[calc(100svh-5rem)] flex items-center bg-hunter-950 text-ivory-50 py-12 sm:py-16 border-b-4 border-gold-500 overflow-hidden" style="background-image:linear-gradient(180deg,rgba(13,31,24,.58),rgba(13,31,24,.76)),url('/IMG_7915.jpg');background-size:cover;background-position:center 56%;">
+  <section id="top" class="relative min-h-[calc(100svh-5rem)] flex items-center bg-hunter-950 text-ivory-50 py-12 sm:py-16 border-b-4 border-gold-500 overflow-hidden" style="background-image:linear-gradient(180deg,rgba(13,31,24,.58),rgba(13,31,24,.76)),url('/Possible%20Pics%20and%20Videos/Photogenic/IMG_7904.jpg');background-size:cover;background-position:center 56%;">
     <div class="absolute inset-0 bg-gradient-to-b from-hunter-950/15 via-hunter-950/25 to-hunter-950/70 pointer-events-none"></div>
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Top Intro Banner -->
@@ -171,13 +177,13 @@
 
         <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ivory-50 leading-tight">
           <span class="block">Meet Razz</span>
-          <span class="block font-serif italic font-semibold text-white text-4xl sm:text-5xl lg:text-6xl mt-1">Lignée du Diamant</span>
+          <span class="block font-serif italic font-semibold text-white mt-1" style="font-size:.56em; line-height:1.15;">Lignée du Diamant</span>
           <span class="block font-serif font-bold text-gold-400 text-6xl sm:text-7xl lg:text-8xl tracking-wide leading-tight mt-3">Golden Bloodlines with a Heart of Gold</span>
         </h1>
 
         <p class="mt-5 text-base sm:text-lg text-ivory-200 max-w-2xl mx-auto leading-relaxed">
           <span class="block font-semibold text-ivory-50">Diamant’s Legacy &times; Gingerloma MG</span>
-          <span class="block mt-1.5 text-ivory-200">Available for On-Site Quarter- or Half-Lease</span>
+          <span class="block mt-5 text-ivory-200">Available for On-Site Quarter- or Half-Lease</span>
           <span class="block mt-1 text-ivory-200 font-normal">561&nbsp;&nbsp;20th Ave NW, Naples, FL 34120</span>
         </p>
       </div>
@@ -261,7 +267,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Big Section Heading -->
       <div class="text-center mb-12">
-        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-hunter-950">Pedigree &amp; Bloodlines</h2>
+        <span class="block text-xs font-bold uppercase tracking-[0.25em] text-gold-600 mb-2">Golden Bloodlines</span><h2 class="font-serif text-4xl sm:text-5xl font-bold text-hunter-950">Pedigree &amp; Bloodlines</h2>
         <div class="w-20 h-0.5 bg-gold-500 mx-auto mt-4"></div>
       </div>
 
@@ -291,15 +297,19 @@
       <div class="space-y-8">
         <!-- Overview Card -->
         <div class="bg-white rounded-3xl p-7 sm:p-10 shadow-sm border border-ivory-300 space-y-5 text-hunter-950 leading-relaxed">
-          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-900">International Jumping Royalty Meets an Amateur-Friendly Mind</h3>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-900">International Jumping Royalty with an Amateur-Friendly Mind</h3>
           <p class="text-base sm:text-lg text-hunter-900">
             Razz is a striking <strong>16.3h, 5-year-old chestnut KWPN/Oldenburg mare</strong> representing a premier cross of international jumping royalty. Sired by the highly sought-after Oldenburg stallion <strong>Diamant’s Legacy</strong>—a son of the legendary Selle Français stallion <strong>Diamant de Semilly</strong>—and out of the KWPN mare <strong>Gingerloma MG</strong>, Razz boasts a <strong>golden pedigree</strong>.
           </p>
-          <div class="bg-ivory-50 border-l-4 border-gold-500 p-5 rounded-r-xl">
-            <span class="text-xs font-bold uppercase tracking-wider text-gold-600 block mb-1">Why This Cross Matters</span>
-            <p class="text-base font-serif italic text-hunter-950">
-              Bred from generations of medal-winning athletes and top-rated European breeding stock, Razz combines world-class jumping scope and athleticism with a rare, amateur-friendly mind.
-            </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+            <div class="bg-ivory-50 rounded-xl p-4 sm:p-5 border border-ivory-200">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gold-600 block mb-1.5">WHY THIS CROSS MATTERS</span>
+              <p class="text-base text-hunter-900 leading-relaxed">Bred from generations of medal-winning athletes and top-rated European breeding stock, Razz combines world-class jumping scope and athleticism with a rare, amateur-friendly mind.</p>
+            </div>
+            <div class="bg-ivory-50 rounded-xl p-4 sm:p-5 border border-ivory-200">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gold-600 block mb-1.5">THE BEST OF BOTH WORLDS</span>
+              <p class="text-base text-hunter-900 leading-relaxed">Her pedigree brings together the power and careful technique prized in top-level jumpers with the rideability, balance, and movement that make a horse enjoyable to develop every day.</p>
+            </div>
           </div>
         </div>
 
@@ -340,16 +350,18 @@
           <ul class="space-y-3 text-base text-hunter-900">
             <li class="flex items-start gap-3">
               <span class="text-gold-600 font-bold mt-1">&#10003;</span>
-              <span><strong>Championship Career:</strong> Ridden by Éric Levallois, he won <strong>Team Gold at the 2002 World Equestrian Games</strong>, <strong>Team Silver at the 2003 European Championships</strong>, and captured the <strong>2002 French National Championship</strong> title outright.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-gold-600 font-bold mt-1">&#10003;</span>
               <span><strong>#1 Sire in the World:</strong> Ranked <strong>#1 on the WBFSH Sire Rankings in 2015 and 2016</strong>, siring Olympic &amp; 1.60m superstars including <strong>Emerald, Dominator 2000 Z, Don VHP Z, Quickly de Kreisker, and Mumbai</strong>.</span>
             </li>
           </ul>
-          <div class="bg-ivory-50 border border-gold-500/40 p-4 rounded-xl text-center">
-            <span class="text-xs font-bold uppercase tracking-wider text-gold-600 block mb-1">The "Diamant" Blueprint</span>
-            <p class="text-sm font-semibold text-hunter-950">Carrying the legendary *Diamant* name guarantees a proven blueprint for effortless athleticism, rideability, and jumping power.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+            <div class="bg-ivory-50 rounded-xl p-4 sm:p-5 border border-ivory-200">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gold-600 block mb-1.5">THE “DIAMANT” BLUEPRINT</span>
+              <p class="text-base text-hunter-900 leading-relaxed">The legendary Diamant line is associated with exceptional scope, careful jumping technique, athleticism, and the competitive drive to succeed at the highest levels.</p>
+            </div>
+            <div class="bg-ivory-50 rounded-xl p-4 sm:p-5 border border-ivory-200">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gold-600 block mb-1.5">A CHAMPION’S LEGACY</span>
+              <p class="text-base text-hunter-900 leading-relaxed">Ridden by Éric Levallois, Diamant de Semilly won Team Gold at the 2002 World Equestrian Games, Team Silver at the 2003 European Championships, and the 2002 French National Championship.</p>
+            </div>
           </div>
         </div>
 
@@ -383,7 +395,7 @@
           <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400">Genetics &amp; Performance</span>
           <h3 class="font-serif text-2xl sm:text-3xl font-bold text-ivory-50">The Ideal Modern Sport Horse Formula</h3>
           <p class="text-base sm:text-lg text-ivory-200 max-w-3xl mx-auto leading-relaxed">
-            When you combine Diamant’s Legacy and Gingerloma MG, you get the ideal modern sport horse formula: <strong class="text-gold-400">French power and scope</strong> <span class="text-ivory-200 font-normal">(via Diamant de Semilly)</span> balanced with <strong class="text-gold-400">Dutch rideability, movement, and soundness</strong> <span class="text-ivory-200 font-normal">(via Navarone and Goodtimes)</span>.
+            When you combine Diamant’s Legacy and Gingerloma MG, you get the ideal modern sport horse formula: <strong class="text-white uppercase">FRENCH power and scope</strong> <span class="text-ivory-200 font-normal">(via Diamant de Semilly)</span> balanced with <strong class="text-white uppercase">DUTCH rideability, movement, and soundness</strong> <span class="text-ivory-200 font-normal">(via Navarone and Goodtimes)</span>.
           </p>
         </div>
       </div>
@@ -496,65 +508,65 @@
         <div class="flex items-center gap-4 mb-5">
           <div><h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-950">In Action</h3><p class="text-xs uppercase tracking-widest text-gold-600 font-semibold mt-1">Flatwork & Over Fences</p></div>
           <div class="h-px bg-gold-500/40 flex-1"></div>
-          <div class="flex items-center gap-2">
-            <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll In Action backward">‹</button>
-            <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll In Action forward">›</button>
-          </div>
         </div>
-        <div class="gallery-carousel" id="carousel-in-action" tabindex="0" aria-label="In Action media carousel">
+        <div class="gallery-carousel-wrap">
+          <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll in-action backward">‹</button>
+          <div class="gallery-carousel" id="carousel-in-action" tabindex="0" aria-label="In Action media carousel">
           <p class="gallery-loading">Loading In Action media…</p>
+        </div>
+          <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll in-action forward">›</button>
         </div>
       </section>
       <section class="gallery-group" data-group="fun-silly" aria-label="Fun / Silly">
         <div class="flex items-center gap-4 mb-5">
           <div><h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-950">Fun / Silly</h3><p class="text-xs uppercase tracking-widest text-gold-600 font-semibold mt-1">Costumes, Toys & Personality</p></div>
           <div class="h-px bg-gold-500/40 flex-1"></div>
-          <div class="flex items-center gap-2">
-            <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll Fun / Silly backward">‹</button>
-            <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll Fun / Silly forward">›</button>
-          </div>
         </div>
-        <div class="gallery-carousel" id="carousel-fun-silly" tabindex="0" aria-label="Fun / Silly media carousel">
+        <div class="gallery-carousel-wrap">
+          <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll fun-silly backward">‹</button>
+          <div class="gallery-carousel" id="carousel-fun-silly" tabindex="0" aria-label="Fun / Silly media carousel">
           <p class="gallery-loading">Loading Fun / Silly media…</p>
+        </div>
+          <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll fun-silly forward">›</button>
         </div>
       </section>
       <section class="gallery-group" data-group="loving" aria-label="Loving / Affectionate">
         <div class="flex items-center gap-4 mb-5">
           <div><h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-950">Loving / Affectionate</h3><p class="text-xs uppercase tracking-widest text-gold-600 font-semibold mt-1">Heart of Gold</p></div>
           <div class="h-px bg-gold-500/40 flex-1"></div>
-          <div class="flex items-center gap-2">
-            <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll Loving / Affectionate backward">‹</button>
-            <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll Loving / Affectionate forward">›</button>
-          </div>
         </div>
-        <div class="gallery-carousel" id="carousel-loving" tabindex="0" aria-label="Loving / Affectionate media carousel">
+        <div class="gallery-carousel-wrap">
+          <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll loving backward">‹</button>
+          <div class="gallery-carousel" id="carousel-loving" tabindex="0" aria-label="Loving / Affectionate media carousel">
           <p class="gallery-loading">Loading Loving / Affectionate media…</p>
+        </div>
+          <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll loving forward">›</button>
         </div>
       </section>
       <section class="gallery-group" data-group="baby" aria-label="Baby Pictures">
         <div class="flex items-center gap-4 mb-5">
           <div><h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-950">Baby Pictures</h3><p class="text-xs uppercase tracking-widest text-gold-600 font-semibold mt-1">Foal & Yearling Days</p></div>
           <div class="h-px bg-gold-500/40 flex-1"></div>
-          <div class="flex items-center gap-2">
-            <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll Baby Pictures backward">‹</button>
-            <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll Baby Pictures forward">›</button>
-          </div>
         </div>
-        <div class="gallery-carousel" id="carousel-baby" tabindex="0" aria-label="Baby Pictures media carousel">
+        <div class="gallery-carousel-wrap">
+          <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll baby backward">‹</button>
+          <div class="gallery-carousel" id="carousel-baby" tabindex="0" aria-label="Baby Pictures media carousel">
           <p class="gallery-loading">Loading Baby Pictures media…</p>
+        </div>
+          <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll baby forward">›</button>
         </div>
       </section>
       <section class="gallery-group" data-group="photogenic" aria-label="Photogenic">
         <div class="flex items-center gap-4 mb-5">
           <div><h3 class="font-serif text-2xl sm:text-3xl font-bold text-hunter-950">Photogenic</h3><p class="text-xs uppercase tracking-widest text-gold-600 font-semibold mt-1">Portraits & Golden Hour</p></div>
           <div class="h-px bg-gold-500/40 flex-1"></div>
-          <div class="flex items-center gap-2">
-            <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll Photogenic backward">‹</button>
-            <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll Photogenic forward">›</button>
-          </div>
         </div>
-        <div class="gallery-carousel" id="carousel-photogenic" tabindex="0" aria-label="Photogenic media carousel">
+        <div class="gallery-carousel-wrap">
+          <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Scroll photogenic backward">‹</button>
+          <div class="gallery-carousel" id="carousel-photogenic" tabindex="0" aria-label="Photogenic media carousel">
           <p class="gallery-loading">Loading Photogenic media…</p>
+        </div>
+          <button type="button" class="carousel-arrow" data-direction="1" aria-label="Scroll photogenic forward">›</button>
         </div>
       </section>
     </div>
@@ -568,7 +580,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center max-w-3xl mx-auto mb-6">
-        <span class="inline-block px-4 py-1 rounded-full bg-hunter-950 text-gold-400 text-xs font-bold uppercase tracking-[0.2em] mb-3">
+        <span class="inline-block px-4 py-1 rounded-full bg-hunter-950 text-white text-xs font-bold uppercase tracking-[0.2em] mb-3">
           #1 Priority: Finding the Right Rider
         </span>
         <h2 class="font-serif text-4xl sm:text-5xl font-bold text-hunter-950">On-Site Lease Options</h2>
@@ -609,7 +621,7 @@
             Pricing is Flexible for the Right Person
           </h3>
           <p class="text-ivory-200 text-base sm:text-lg leading-relaxed">
-            What matters most to us isn’t the money—it’s finding a kind, caring rider who will treat Razz wonderfully and give her <strong class="text-gold-400">lots and lots of love, attention, grooming, and affection</strong>. Because finding the right human match comes first, we are genuinely flexible on monthly pricing depending on the rider and arrangement.
+            What matters most to us isn’t the money—it’s finding a kind, caring rider who will treat Razz wonderfully and give her <strong class="text-gold-400">lots and lots of love, attention, grooming, and affection</strong>. <span class="inline-block mt-3">Because finding the right human match comes first, we are genuinely flexible on monthly pricing depending on the rider and arrangement.</span>
           </p>
         </div>
       </div>
@@ -846,7 +858,24 @@
           <!-- Row 2 Left: Broke by -->
           <div class="border-b border-ivory-100 pb-4">
             <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">BROKE BY</dt>
-            <dd class="mt-1.5 font-medium text-hunter-700 italic">[Trainer / starter name placeholder]</dd>
+            <dd class="mt-1.5 font-semibold text-hunter-950">
+              <div class="trainer-trigger" tabindex="0">
+                <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
+                  <span>Frank Barnett</span>
+                  <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </button>
+                <div class="trainer-popover absolute left-0 bottom-full mb-3 w-80 sm:w-96 bg-hunter-950 text-ivory-50 rounded-2xl p-5 shadow-2xl border border-gold-400 z-40 text-left font-normal">
+                  <h4 class="font-serif text-xl font-bold text-ivory-50">Frank Barnett</h4>
+                  <p class="text-[11px] uppercase tracking-wider text-gold-400 mt-0.5 mb-3">Horse Trainer &amp; Classical Horseman · Florida</p>
+                  <p class="text-xs sm:text-[13px] text-ivory-100 leading-relaxed">Published equestrian profiles describe Barnett as a Florida trainer known for working with problem horses and drawing on both Western and classical riding principles. A 2018 equestrian directory also lists him in Williston, Florida, as an instructor and author of <em>How to Succeed at Training Without Really Thinking</em> (the directory prints the title with a likely typo).</p>
+                  <div class="mt-3 pt-3 border-t border-hunter-800 flex flex-col gap-1">
+                    <a href="https://chronofhorse.com/en/article/trainer-isaac-leffkowitz-believes-in-second-chances-for-the-throwaways/" target="_blank" rel="noopener noreferrer" class="text-xs text-gold-400 underline">The Chronicle of the Horse — trainer profile</a>
+                    <a href="https://yourdressage.org/2023/10/06/dancing-is-universal/" target="_blank" rel="noopener noreferrer" class="text-xs text-gold-400 underline">YourDressage — working with Barnett</a>
+                    <a href="https://www.andalusiansdemythos.com/_files/ugd/5a0194_0f65da2e890d42b6bd6db311fce89f12.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-gold-400 underline">Equestrian directory listing &amp; book title</a>
+                  </div>
+                </div>
+              </div>
+            </dd>
           </div>
 
           <!-- Row 2 Right: Trained by (Melissa Hogan and Renee Petrillo with Interactive Hover Cards) -->
@@ -916,13 +945,42 @@
           <!-- Row 3 Left: Veterinarian (NY) -->
           <div class="border-b border-ivory-100 pb-4">
             <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">VETERINARIAN (NY)</dt>
-            <dd class="mt-1.5 font-medium text-hunter-700 italic">[New York veterinarian / clinic placeholder]</dd>
+            <dd class="mt-1.5 font-semibold text-hunter-950">
+              <div class="trainer-trigger" tabindex="0">
+                <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer"><span>New England Equine Practice</span><svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+                <div class="trainer-popover absolute left-0 bottom-full mb-3 w-80 sm:w-96 bg-hunter-950 text-ivory-50 rounded-2xl p-5 shadow-2xl border border-gold-400 z-40 text-left font-normal">
+                  <h4 class="font-serif text-xl font-bold text-ivory-50">New England Equine Practice</h4>
+                  <p class="text-[11px] uppercase tracking-wider text-gold-400 mt-0.5 mb-3">Independent Equine Veterinary Hospital · Patterson, New York</p>
+                  <p class="text-xs sm:text-[13px] text-ivory-100 leading-relaxed">Owner-operated equine hospital and ambulatory practice, established in 1970. Services include medicine, surgery, intensive care, isolation, and advanced imaging. The practice advertises 24/7 emergency coverage and board-certified equine surgeons.</p>
+                  <div class="mt-3 pt-3 border-t border-hunter-800 flex flex-col gap-1">
+                    <a href="tel:8458787500" class="text-xs text-gold-400 underline">24-hour phone: (845) 878-7500</a>
+                    <a href="https://www.neequine.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-gold-400 underline">Official website</a>
+                    <a href="https://www.neequine.com/contact" target="_blank" rel="noopener noreferrer" class="text-xs text-gold-400 underline">Location &amp; contact details</a>
+                  </div>
+                </div>
+              </div>
+            </dd>
           </div>
 
           <!-- Row 3 Right: Veterinarian (FL) -->
           <div class="border-b border-ivory-100 pb-4">
             <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">VETERINARIAN (FL)</dt>
-            <dd class="mt-1.5 font-medium text-hunter-700 italic">[Florida veterinarian / clinic placeholder]</dd>
+            <dd class="mt-1.5 font-semibold text-hunter-950">
+              <div class="trainer-trigger" tabindex="0">
+                <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer"><span>Red Barn Veterinary Services</span><svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+                <div class="trainer-popover absolute left-0 bottom-full mb-3 w-80 sm:w-96 bg-hunter-950 text-ivory-50 rounded-2xl p-5 shadow-2xl border border-gold-400 z-40 text-left font-normal">
+                  <h4 class="font-serif text-xl font-bold text-ivory-50">Dr. Deborah Sieber</h4>
+                  <p class="text-[11px] uppercase tracking-wider text-gold-400 mt-0.5 mb-3">Red Barn Veterinary Services · Naples, Florida</p>
+                  <p class="text-xs sm:text-[13px] text-ivory-100 leading-relaxed">Mobile veterinary care for horses, small animals, and farm animals in Naples, Golden Gate Estates, Marco Island, and surrounding areas. Dr. Sieber is a Royal Veterinary College graduate with extensive equine experience and international work in objective lameness evaluation using the Equinosis Lameness Locator.</p>
+                  <div class="mt-3 pt-3 border-t border-hunter-800 flex flex-col gap-1">
+                    <a href="tel:9146202353" class="text-xs text-gold-400 underline">Phone: (914) 620-2353</a>
+                    <a href="mailto:redbarnvet1@gmail.com" class="text-xs text-gold-400 underline">redbarnvet1@gmail.com</a>
+                    <a href="https://www.redbarnvetnaples.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-gold-400 underline">Official website &amp; services</a>
+                    <a href="https://www.redbarnvetnaples.com/about" target="_blank" rel="noopener noreferrer" class="text-xs text-gold-400 underline">Dr. Sieber’s background</a>
+                  </div>
+                </div>
+              </div>
+            </dd>
           </div>
 
           <!-- Row 4 Bottom Row: Ridden by (Grace Cornell with Interactive Hover Card) -->
@@ -1168,7 +1226,7 @@
       function displayName(path) {
         return path.split('/').pop().replace(/^\d+\s*-\s*/, '').replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
       }
-      function mediaCard(item) {
+      function mediaCard(item, category) {
         const path = item.path;
         const encodedPath = path.split('/').map(encodeURIComponent).join('/');
         const url = repoBase + encodedPath;
@@ -1177,7 +1235,7 @@
         const media = isVideo
           ? '<video controls preload="metadata" playsinline aria-label="' + name.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '"><source src="' + url + '"></video>'
           : '<img loading="lazy" src="' + url + '" alt="' + name.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '">';
-        return '<figure class="gallery-card">' + media + '<figcaption>' + name.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</figcaption></figure>';
+        return '<figure class="gallery-card' + (category.id === 'baby' ? ' baby-media' : '') + '">' + media + (category.id === 'baby' ? '' : '<figcaption>' + name.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</figcaption>') + '</figure>';
       }
       async function loadGallery() {
         for (const category of galleryCategories) {
@@ -1196,7 +1254,7 @@
             } else {
               items.sort((a,b) => a.name.localeCompare(b.name, undefined, {numeric:true}));
             }
-            carousel.innerHTML = items.length ? items.map(mediaCard).join('') : '<p class="gallery-empty">No media has been added to this category yet.</p>';
+            carousel.innerHTML = items.length ? items.map(item => mediaCard(item, category)).join('') : '<p class="gallery-empty">No media has been added to this category yet.</p>';
             const tab = document.querySelector('.gallery-tab[data-filter="' + category.id + '"]');
             if (tab) tab.textContent = category.label + ' (' + items.length + ')';
           } catch (error) {
@@ -1223,7 +1281,7 @@
         group.querySelectorAll('.carousel-arrow').forEach(button => {
           button.addEventListener('click', () => {
             const carousel = group.querySelector('.gallery-carousel');
-            carousel.scrollBy({left:Number(button.dataset.direction) * carousel.clientWidth * 0.85, behavior:'smooth'});
+            const card = carousel.querySelector('.gallery-card');\n            if (card) { const gap = parseFloat(getComputedStyle(carousel).columnGap) || 0; carousel.scrollBy({left:Number(button.dataset.direction) * (card.getBoundingClientRect().width + gap), behavior:'smooth'}); }
           });
         });
       });
