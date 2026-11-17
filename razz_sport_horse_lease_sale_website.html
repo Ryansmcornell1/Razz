@@ -106,7 +106,7 @@
     .gallery-image-expand { position:absolute; top:.55rem; right:.65rem; display:flex; align-items:center; justify-content:center; width:2rem; height:2rem; border-radius:.5rem; background:rgba(13,31,24,.82); color:#fff; font-size:1.45rem; line-height:1; }
     .image-viewer { position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:3.5rem 1rem 4rem; background:rgba(0,0,0,.97); }
     .image-viewer.hidden { display:none; }
-    .image-viewer img { max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; }
+    .image-viewer img { max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; transform:translate(0px,0px) scale(1); transform-origin:center center; touch-action:none; user-select:none; -webkit-user-drag:none; }
     .image-viewer-close { position:absolute; top:.7rem; right:1rem; width:2.8rem; height:2.8rem; border:1px solid rgba(255,255,255,.65); border-radius:9999px; background:rgba(20,20,20,.75); color:#fff; font-size:2rem; line-height:1; cursor:pointer; }
     .image-viewer-hint { position:absolute; bottom:.9rem; left:1rem; right:1rem; color:#fff; text-align:center; font-size:.85rem; }
     .image-viewer-mobile-hint { display:none; }
@@ -1226,7 +1226,7 @@
       });
 
       // 3. Load repository media into category carousels (photos and videos together)
-       const galleryCategories = [{"id":"in-action","label":"In Action","folder":"In Action","note":"Flatwork & Over Fences","files":["Possible Pics and Videos/In Action/IMG_2330.mp4","Possible Pics and Videos/In Action/IMG_2418.jpg","Possible Pics and Videos/In Action/IMG_2407.mp4","Possible Pics and Videos/In Action/IMG_3383.jpg","Possible Pics and Videos/In Action/IMG_8114.jpg","Possible Pics and Videos/In Action/IMG_8673.mp4","Possible Pics and Videos/In Action/Razz No Hands.mp4","Possible Pics and Videos/In Action/ScreenRecording_07-24-2026 21-26-01_1.mp4","Possible Pics and Videos/In Action/Christen Flat 20260918_144200.mp4","Possible Pics and Videos/In Action/VID_20261116_152512.mp4","Possible Pics and Videos/In Action/VID_20261116_152517.mp4","Possible Pics and Videos/In Action/VID_20261116_153528.mp4","Possible Pics and Videos/In Action/VID_20261116_153532.mp4"]},{"id":"fun-silly","label":"Fun / Silly","folder":"Fun","note":"Costumes, Toys & Personality","files":["Possible Pics and Videos/Fun/510aff369b8f421d8924937a7e35f682.mp4","Possible Pics and Videos/Fun/Razz Throwing her halter.mp4","Possible Pics and Videos/Fun/A12B716E-E5E9-4F60-B71B-5FE3D71B6738.mp4","Possible Pics and Videos/Fun/IMG_3380.mp4","Possible Pics and Videos/Fun/IMG_3024.jpg","Possible Pics and Videos/Fun/IMG_8933.jpg","Possible Pics and Videos/Fun/IMG_7864.jpg","Possible Pics and Videos/Fun/IMG_4859.mp4","Possible Pics and Videos/Fun/IMG_5389.jpg","Possible Pics and Videos/Fun/IMG_6913.mp4","Possible Pics and Videos/Fun/IMG_0714.jpg"]},{"id":"loving","label":"Loving / Affectionate","folder":"Loving & Affectionate","note":"Heart of Gold","files":["Possible Pics and Videos/Loving & Affectionate/IMG_1409.mp4","Possible Pics and Videos/Loving & Affectionate/IMG_1947.jpg","Possible Pics and Videos/Loving & Affectionate/IMG_2441.mp4","Possible Pics and Videos/Loving & Affectionate/IMG_6393.mp4","Possible Pics and Videos/Loving & Affectionate/IMG_6483.jpg","Possible Pics and Videos/Loving & Affectionate/Razz Scratchy.mp4","Possible Pics and Videos/Loving & Affectionate/Razz Snuggling.mp4"]},{"id":"baby","label":"Baby Pictures","folder":"Baby","note":"Foal & Yearling Days","files":["Possible Pics and Videos/Baby/01 - IMG_3248.jpg","Possible Pics and Videos/Baby/02 - IMG_3230.jpg","Possible Pics and Videos/Baby/03 - IMG_3330.mp4","Possible Pics and Videos/Baby/04 - IMG_4124.jpg","Possible Pics and Videos/Baby/05 - IMG_4128.jpg","Possible Pics and Videos/Baby/06 - IMG_4326.mp4","Possible Pics and Videos/Baby/07 - IMG_4351.jpg","Possible Pics and Videos/Baby/08 - IMG_8900.jpg","Possible Pics and Videos/Baby/09 - IMG_8901.jpg","Possible Pics and Videos/Baby/10 - IMG_8902.jpg","Possible Pics and Videos/Baby/11 - ScreenRecording_08-11-2026 15-33-35_1.mp4","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-34-17_1 (V2).mp4","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-34-45_1 (V2).mp4","Possible Pics and Videos/Baby/14 - ScreenRecording_08-11-2026 15-30-00_1.mp4","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-30-45_1 (V2).mp4","Possible Pics and Videos/Baby/16 - IMG_8896.jpg","Possible Pics and Videos/Baby/17 - IMG_8897.jpg","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-32-05_1 (V3).mp4","Possible Pics and Videos/Baby/19 - IMG_8906.jpg","Possible Pics and Videos/Baby/20 - IMG_8907.jpg","Possible Pics and Videos/Baby/21 - IMG_8908.jpg","Possible Pics and Videos/Baby/22 - IMG_8893.jpg","Possible Pics and Videos/Baby/23 - IMG_8894.jpg","Possible Pics and Videos/Baby/24 - IMG_8909.jpg","Possible Pics and Videos/Baby/Video2.mp4"]},{"id":"photogenic","label":"Photogenic","folder":"Photogenic","note":"Portraits & Golden Hour","files":["Possible Pics and Videos/Photogenic/Graduation Black & White.jpg","Possible Pics and Videos/Photogenic/Graduation collage.jpg","Possible Pics and Videos/Photogenic/Graduation on horse.jpg","Possible Pics and Videos/Photogenic/IMG_4219.jpg","Possible Pics and Videos/Photogenic/IMG_5976.jpg","Possible Pics and Videos/Photogenic/IMG_7850.jpg","Possible Pics and Videos/Photogenic/IMG_7904.jpg","Possible Pics and Videos/Photogenic/IMG_7915.jpg","Possible Pics and Videos/Photogenic/IMG_8617.jpg"]}];
+       const galleryCategories = [{"id":"in-action","label":"In Action","folder":"In Action","note":"Flatwork & Over Fences","files":["Possible Pics and Videos/In Action/IMG_2330.mp4","Possible Pics and Videos/In Action/IMG_2418.jpg","Possible Pics and Videos/In Action/IMG_2407.mp4","Possible Pics and Videos/In Action/IMG_3383.jpg","Possible Pics and Videos/In Action/IMG_8114.jpg","Possible Pics and Videos/In Action/IMG_8673.mp4","Possible Pics and Videos/In Action/Razz No Hands.mp4","Possible Pics and Videos/In Action/ScreenRecording_07-24-2026 21-26-01_1.mp4","Possible Pics and Videos/In Action/Christen Flat 20260918_144200.mp4","Possible Pics and Videos/In Action/VID_20261116_152512.mp4","Possible Pics and Videos/In Action/VID_20261116_152517.mp4",]},{"id":"fun-silly","label":"Fun / Silly","folder":"Fun","note":"Costumes, Toys & Personality","files":["Possible Pics and Videos/Fun/510aff369b8f421d8924937a7e35f682.mp4","Possible Pics and Videos/Fun/Razz Throwing her halter.mp4","Possible Pics and Videos/Fun/A12B716E-E5E9-4F60-B71B-5FE3D71B6738.mp4","Possible Pics and Videos/Fun/IMG_3380.mp4","Possible Pics and Videos/Fun/IMG_3024.jpg","Possible Pics and Videos/Fun/IMG_8933.jpg","Possible Pics and Videos/Fun/IMG_7864.jpg","Possible Pics and Videos/Fun/IMG_4859.mp4","Possible Pics and Videos/Fun/IMG_5389.jpg","Possible Pics and Videos/Fun/IMG_6913.mp4","Possible Pics and Videos/Fun/IMG_0714.jpg"]},{"id":"loving","label":"Loving / Affectionate","folder":"Loving & Affectionate","note":"Heart of Gold","files":["Possible Pics and Videos/Loving & Affectionate/IMG_1409.mp4","Possible Pics and Videos/Loving & Affectionate/IMG_1947.jpg","Possible Pics and Videos/Loving & Affectionate/IMG_2441.mp4","Possible Pics and Videos/Loving & Affectionate/IMG_6393.mp4","Possible Pics and Videos/Loving & Affectionate/IMG_6483.jpg","Possible Pics and Videos/Loving & Affectionate/Razz Scratchy.mp4","Possible Pics and Videos/Loving & Affectionate/Razz Snuggling.mp4"]},{"id":"baby","label":"Baby Pictures","folder":"Baby","note":"Foal & Yearling Days","files":["Possible Pics and Videos/Baby/01 - IMG_3248.jpg","Possible Pics and Videos/Baby/02 - IMG_3230.jpg","Possible Pics and Videos/Baby/03 - IMG_3330.mp4","Possible Pics and Videos/Baby/04 - IMG_4124.jpg","Possible Pics and Videos/Baby/05 - IMG_4128.jpg","Possible Pics and Videos/Baby/06 - IMG_4326.mp4","Possible Pics and Videos/Baby/07 - IMG_4351.jpg","Possible Pics and Videos/Baby/08 - IMG_8900.jpg","Possible Pics and Videos/Baby/09 - IMG_8901.jpg","Possible Pics and Videos/Baby/10 - IMG_8902.jpg","Possible Pics and Videos/Baby/11 - ScreenRecording_08-11-2026 15-33-35_1.mp4","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-34-17_1 (V2).mp4","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-34-45_1 (V2).mp4","Possible Pics and Videos/Baby/14 - ScreenRecording_08-11-2026 15-30-00_1.mp4","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-30-45_1 (V2).mp4","Possible Pics and Videos/Baby/16 - IMG_8896.jpg","Possible Pics and Videos/Baby/17 - IMG_8897.jpg","Possible Pics and Videos/Baby/ScreenRecording_08-11-2026 15-32-05_1 (V3).mp4","Possible Pics and Videos/Baby/19 - IMG_8906.jpg","Possible Pics and Videos/Baby/20 - IMG_8907.jpg","Possible Pics and Videos/Baby/21 - IMG_8908.jpg","Possible Pics and Videos/Baby/22 - IMG_8893.jpg","Possible Pics and Videos/Baby/23 - IMG_8894.jpg","Possible Pics and Videos/Baby/24 - IMG_8909.jpg","Possible Pics and Videos/Baby/Video2.mp4"]},{"id":"photogenic","label":"Photogenic","folder":"Photogenic","note":"Portraits & Golden Hour","files":["Possible Pics and Videos/Photogenic/Graduation Black & White.jpg","Possible Pics and Videos/Photogenic/Graduation collage.jpg","Possible Pics and Videos/Photogenic/Graduation on horse.jpg","Possible Pics and Videos/Photogenic/IMG_4219.jpg","Possible Pics and Videos/Photogenic/IMG_5976.jpg","Possible Pics and Videos/Photogenic/IMG_7850.jpg","Possible Pics and Videos/Photogenic/IMG_7904.jpg","Possible Pics and Videos/Photogenic/IMG_7915.jpg","Possible Pics and Videos/Photogenic/IMG_8617.jpg"]}];
       const repoBase = 'https://raw.githubusercontent.com/Ryansmcornell1/Razz/main/';
       const galleryTabs = document.querySelectorAll('.gallery-tab');
       const galleryGroups = document.querySelectorAll('.gallery-group');
@@ -1250,8 +1250,12 @@
       const actionCaptions = {
         'IMG 2418': "Early attempt at 2'6\".",
         'IMG 2407': 'Clears with ease and style.',
-        'IMG 8114': "3'0",
+        'IMG 8114': 'easily clears 3\'0" oxer.',
         'IMG 2330': 'Goes fast when you ask her to (and when it’s safe) but slows down when you want her to.',
+        'VID 20261116 152512': 'Flat by Melissa',
+        'VID 20261116 152517': 'Fences by Melissa',
+        'IMG 8673': 'Fences by Renee',
+        'IMG 3383': 'Jumping an oxer at 2\'6" with clearance for 3\'3".',
         'Razz No Hands': 'No Hands - smooth, balanced ride.',
         'ScreenRecording 07 24 2026 21 26 01 1': 'Highlights 1',
         'Christen Flat 20260918 144200': 'Flat - by Christen'
@@ -1291,13 +1295,64 @@
       document.body.appendChild(imageViewer);
       const imageViewerImage = imageViewer.querySelector('img');
       function closeImageViewer() {
+        resetViewerZoom();
         imageViewer.classList.add('hidden');
         document.body.style.overflow = '';
         if (document.fullscreenElement === imageViewer && document.exitFullscreen) {
           document.exitFullscreen().catch(() => {});
         }
       }
+      let viewerScale = 1;
+      let viewerX = 0;
+      let viewerY = 0;
+      let pinchStartDistance = 0;
+      let pinchStartScale = 1;
+      let panStartX = 0;
+      let panStartY = 0;
+      let panOriginX = 0;
+      let panOriginY = 0;
+      function applyViewerTransform() {
+        imageViewerImage.style.transform = 'translate(' + viewerX + 'px,' + viewerY + 'px) scale(' + viewerScale + ')';
+      }
+      function resetViewerZoom() {
+        viewerScale = 1; viewerX = 0; viewerY = 0;
+        applyViewerTransform();
+      }
+      function touchDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.hypot(dx, dy);
+      }
+      imageViewerImage.addEventListener('touchstart', event => {
+        if (event.touches.length === 2) {
+          pinchStartDistance = touchDistance(event.touches);
+          pinchStartScale = viewerScale;
+        } else if (event.touches.length === 1 && viewerScale > 1) {
+          panStartX = event.touches[0].clientX; panStartY = event.touches[0].clientY;
+          panOriginX = viewerX; panOriginY = viewerY;
+        }
+      }, {passive:true});
+      imageViewerImage.addEventListener('touchmove', event => {
+        if (event.touches.length === 2 && pinchStartDistance) {
+          event.preventDefault();
+          viewerScale = Math.min(5, Math.max(1, pinchStartScale * touchDistance(event.touches) / pinchStartDistance));
+          applyViewerTransform();
+        } else if (event.touches.length === 1 && viewerScale > 1) {
+          event.preventDefault();
+          viewerX = panOriginX + event.touches[0].clientX - panStartX;
+          viewerY = panOriginY + event.touches[0].clientY - panStartY;
+          applyViewerTransform();
+        }
+      }, {passive:false});
+      imageViewerImage.addEventListener('touchend', event => {
+        if (event.touches.length < 2) pinchStartDistance = 0;
+        if (event.touches.length === 1 && viewerScale > 1) {
+          panStartX = event.touches[0].clientX; panStartY = event.touches[0].clientY;
+          panOriginX = viewerX; panOriginY = viewerY;
+        }
+      }, {passive:true});
       function openImageViewer(sourceImage) {
+        resetViewerZoom();
         imageViewerImage.src = sourceImage.currentSrc || sourceImage.src;
         imageViewerImage.alt = sourceImage.alt || 'Expanded picture';
         imageViewer.classList.remove('hidden');
@@ -1332,7 +1387,22 @@
           } else {
             items.sort((a,b) => {
               if (category.id === 'in-action') {
-                const priority = path => path.includes('ScreenRecording_07-24-2026 21-26-01_1') ? 0 : (path.endsWith('/IMG_2418.jpg') ? 1 : (path.endsWith('/IMG_2407.mp4') ? 2 : 10));
+                const ordered = [
+                  'ScreenRecording_07-24-2026 21-26-01_1',
+                  'IMG_2330.mp4',
+                  'VID_20261116_152512.mp4',
+                  'VID_20261116_152517.mp4',
+                  'Christen Flat 20260918_144200.mp4',
+                  'IMG_8673.mp4'
+                ];
+                const priority = path => {
+                  const name = path.split('/').pop();
+                  const position = ordered.indexOf(name);
+                  if (position !== -1) return position;
+                  if (path.endsWith('/IMG_2418.jpg')) return 10;
+                  if (path.endsWith('/IMG_2407.mp4')) return 11;
+                  return 20;
+                };
                 const delta = priority(a) - priority(b);
                 if (delta !== 0) return delta;
               }
