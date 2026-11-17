@@ -1232,7 +1232,7 @@
         const isVideo = /\\.(mp4|webm|mov|m4v)$/i.test(path);
         const safeName = name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
         const media = isVideo
-          ? '<video controls preload="metadata" playsinline aria-label="' + safeName + '"><source src="' + url + '" type="video/mp4"></video>'
+          ? '<video controls preload="metadata" playsinline aria-label="' + safeName + '"><source src="' + url + '"></video>'
           : '<img loading="lazy" src="' + url + '" alt="' + safeName + '">';
         return '<figure class="gallery-card' + (category.id === 'baby' ? ' baby-media' : '') + '">' + media + (category.id === 'baby' ? '' : '<figcaption>' + name.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</figcaption>') + '</figure>';
       }
