@@ -1304,7 +1304,7 @@
         const isVideo = /\.(mp4|webm|mov|m4v)$/i.test(path);
         const safeName = name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
         const media = isVideo
-          ? '<video controls preload="metadata" playsinline aria-label="' + safeName + '"><source src="' + url + '"></video>'
+          ? '<video controls preload="metadata" playsinline' + (name === 'IMG 4859' && category.id === 'fun-silly' ? ' muted data-simon-music="true"' : '') + ' aria-label="' + safeName + '"><source src="' + url + '"></video>'
           : '<button type="button" class="gallery-image-button" aria-label="Expand image: ' + safeName + '"><img loading="lazy" src="' + url + '" alt="' + safeName + '"><span class="gallery-image-expand" aria-hidden="true">⛶</span></button>';
         const caption = category.id === 'baby' ? (babyCaptions[name] || name) : (category.id === 'in-action' ? (actionCaptions[name] || name) : (category.id === 'fun-silly' ? (funCaptions[name] || name) : (category.id === 'loving' ? (lovingCaptions[name] || name) : name)));
         const hideCaption = (category.id === 'baby' && babyNoCaptions.has(name)) || (category.id === 'fun-silly' && funNoCaption.has(name)) || (category.id === 'loving' && lovingNoCaption.has(name));
@@ -1435,6 +1435,47 @@
             });
           }
           carousel.innerHTML = items.length ? items.map(path => mediaCard(path, category)).join('') : '<p class="gallery-empty">No media has been added to this category yet.</p>';
+          // Simon Says: silence the source track and play an original, whimsical
+          // browser-synthesized melody in sync with video playback.
+          carousel.querySelectorAll('video[data-simon-music]').forEach(video => {
+            video.muted = true;
+            let audioContext = null;
+            let tuneTimer = null;
+            let step = 0;
+            const notes = [523.25,659.25,783.99,659.25,587.33,698.46,880,698.46,659.25,523.25,587.33,392];
+            const stopTune = () => {
+              if (tuneTimer !== null) { clearInterval(tuneTimer); tuneTimer = null; }
+              if (audioContext) { audioContext.close().catch(() => {}); audioContext = null; }
+            };
+            const playNote = () => {
+              if (!audioContext || audioContext.state !== 'running') return;
+              const now = audioContext.currentTime;
+              const osc = audioContext.createOscillator();
+              const gain = audioContext.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(notes[step++ % notes.length], now);
+              gain.gain.setValueAtTime(0.0001, now);
+              gain.gain.exponentialRampToValueAtTime(0.09, now + 0.025);
+              gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.21);
+              osc.connect(gain).connect(audioContext.destination);
+              osc.start(now);
+              osc.stop(now + 0.22);
+            };
+            video.addEventListener('play', () => {
+              stopTune();
+              const Context = window.AudioContext || window.webkitAudioContext;
+              if (!Context) return;
+              audioContext = new Context();
+              audioContext.resume().then(() => {
+                if (!video.paused && audioContext) {
+                  playNote();
+                  tuneTimer = setInterval(playNote, 245);
+                }
+              }).catch(() => {});
+            });
+            video.addEventListener('pause', stopTune);
+            video.addEventListener('ended', stopTune);
+          });
           carousel.querySelectorAll('.gallery-image-button').forEach(button => {
             button.addEventListener('click', () => openImageViewer(button.querySelector('img')));
           });
