@@ -112,7 +112,15 @@
     .image-viewer-mobile-hint { display:none; }
     @media (max-width: 700px) { .image-viewer-mobile-hint { display:block; } .image-viewer-desktop-hint { display:none; } }
 
-  </style>
+  
+    /* Three-by-three care-team layout: identical name sizing and single-line entries. */
+    .journey-team-grid .trainer-btn { white-space: nowrap; font-size: inherit; }
+    .journey-team-grid dd { font-size: 0.875rem; }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .journey-team-grid { column-gap: 0.75rem; }
+      .journey-team-grid dd { font-size: 0.8125rem; }
+    }
+</style>
 </head>
 <body class="bg-ivory-50 text-hunter-950 font-sans antialiased selection:bg-gold-500 selection:text-white">
 
@@ -797,11 +805,11 @@
           </span>
         </div>
 
-        <dl class="grid grid-cols-1 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,0.85fr)] gap-x-4 lg:gap-x-6 gap-y-6 text-sm sm:text-base">
-          <!-- Bred by Emily Holmes -->
-          <div class="border-b border-ivory-100 pb-4">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">BRED BY</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950">
+        <dl class="grid grid-cols-1 md:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-6 text-sm sm:text-base journey-team-grid">
+          <!-- BRED BY: Emily Holmes -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">BRED BY</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
                   <span>Emily Holmes</span><svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -820,10 +828,10 @@
             </dd>
           </div>
 
-          <!-- Raised by Lucky Dog Farm, LLC -->
-          <div class="border-b border-ivory-100 pb-4">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">RAISED BY</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950">
+          <!-- RAISED BY: Lucky Dog Farm, LLC -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">RAISED BY</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
                   <span>Lucky Dog Farm, LLC</span>
@@ -853,10 +861,10 @@
             </dd>
           </div>
 
-          <!-- Row 2 Left: Broke by -->
-          <div class="border-b border-ivory-100 pb-4">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">BROKE BY</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950">
+          <!-- BROKE BY: Frank Barnett -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">BROKE BY</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
                   <span>Frank Barnett</span>
@@ -871,10 +879,10 @@
             </dd>
           </div>
 
-          <!-- Training team in New York -->
-          <div class="md:col-start-1 border-b border-ivory-100 pb-4">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">TRAINED BY (NY)</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950 flex flex-nowrap items-center gap-x-1 gap-y-0 whitespace-nowrap text-[13px] lg:text-sm">
+          <!-- TRAINED BY (NY): Melissa Hogan -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">TRAINED BY (NY)</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
                   <span>Melissa Hogan</span>
@@ -901,7 +909,13 @@
                   </p>
                 </div>
               </div>
-              <span class="font-normal text-hunter-700">and</span>
+            </dd>
+          </div>
+
+          <!-- TRAINED BY (NY): Renee Petrillo -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">TRAINED BY (NY)</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
                   <span>Renee Petrillo</span>
@@ -931,10 +945,10 @@
             </dd>
           </div>
 
-          <!-- Training team in Florida -->
-          <div class="md:col-start-2 border-b border-ivory-100 pb-4">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">TRAINED BY (FL)</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950">
+          <!-- TRAINED BY (FL): Marissa Creviston -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">TRAINED BY (FL)</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
                   <span>Marissa Creviston</span>
@@ -964,10 +978,10 @@
             </dd>
           </div>
 
-          <!-- Row 3 Left: Veterinarian (NY) -->
-          <div class="md:col-start-1 border-b border-ivory-100 pb-4">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">VETERINARIAN (NY)</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950">
+          <!-- VETERINARIAN (NY): New England Equine Practice -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">VETERINARIAN (NY)</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer"><span>New England Equine Practice</span><svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
                 <div class="trainer-popover absolute left-0 bottom-full mb-3 w-80 sm:w-96 bg-hunter-950 text-ivory-50 rounded-2xl p-5 shadow-2xl border border-gold-400 z-40 text-left font-normal">
@@ -981,10 +995,10 @@
             </dd>
           </div>
 
-          <!-- Row 3 Right: Veterinarian (FL) -->
-          <div class="md:col-start-3 border-b border-ivory-100 pb-4">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">VETERINARIAN (FL)</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950">
+          <!-- VETERINARIAN (FL): Red Barn Veterinary Services -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">VETERINARIAN (FL)</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer"><span>Red Barn Veterinary Services</span><svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
                 <div class="trainer-popover absolute left-0 bottom-full mb-3 w-80 sm:w-96 bg-hunter-950 text-ivory-50 rounded-2xl p-5 shadow-2xl border border-gold-400 z-40 text-left font-normal">
@@ -997,10 +1011,10 @@
             </dd>
           </div>
 
-          <!-- Row 4 Bottom Row: Ridden by (Grace Cornell with Interactive Hover Card) -->
-          <div class="md:col-start-2 text-left">
-            <dt class="text-xs font-bold uppercase tracking-wider text-gold-600">OWNED &amp; RIDDEN BY</dt>
-            <dd class="mt-1.5 font-semibold text-hunter-950">
+          <!-- OWNED & RIDDEN BY: Grace Cornell -->
+          <div class="border-b border-ivory-100 pb-4 min-w-0">
+            <dt class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gold-600 whitespace-nowrap">OWNED &amp; RIDDEN BY</dt>
+            <dd class="mt-1.5 font-semibold text-hunter-950 whitespace-nowrap text-sm sm:text-sm">
               <div class="trainer-trigger" tabindex="0">
                 <button type="button" class="trainer-btn inline-flex items-center gap-1.5 text-hunter-950 font-bold underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-gold-600 focus:outline-none cursor-pointer">
                   <span>Grace Cornell</span>
